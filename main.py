@@ -83,4 +83,4 @@ async def restart(ctx):
     await ctx.respond(embed=restart_e)
 
 
-bot.run("MTA0ODY1NDU0MjQ5NTA0MzU4NQ.G2XZ1j.T0eJEsUXmo7Hoq-XI9gprn5yYvzE0pI9r-Q6OI")
+bot.run("")
