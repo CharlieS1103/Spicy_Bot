@@ -22,7 +22,7 @@ async def on_message(ctx):
 
     for i in ctx.content.split(" "):
         if i in help_words:
-            await ctx.channel.send("Do you need help? Open a ticket in #support-tickets, or type in / and look if there is a solution for your problem. If not just ignore this message <3")
+            await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if there is a solution for your problem. If not just ignore this message <3")
 
 
             
