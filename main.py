@@ -12,6 +12,20 @@ async def on_ready():
 guild = 755866816038961175
 
 
+help_words = ["help", "install", "stuck"]
+
+@bot.event
+async def on_message(ctx):
+
+    if ctx.author == bot.user:
+        return
+
+    for i in ctx.content.split(" "):
+        if i in help_words:
+            await ctx.channel.send("Do you need help? Open a ticket in #support-tickets, or type in / and look if there is a solution for your problem. If not just ignore this message <3")
+
+
+            
 find_config_e=discord.Embed(title="find your config (config-xpui.ini) file", description="very helpful for helper", color=0x0400ff)
 find_config_e.add_field(name="Solution 1:", value="run ```spicetify config-dir``` in a terminal of your choice (this opens your file explorer at the right location)", inline=False)
 find_config_e.add_field(name="Solution 2: ", value="run ```spicetify config``` in a terminal of your choice. What comes back is your config file", inline=False)
