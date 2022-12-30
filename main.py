@@ -1,7 +1,13 @@
 import discord
 from discord.ext import *
 
-bot = discord.Bot()
+intents = discord.Intents.default()
+intents.message_content = True
+
+
+
+bot = discord.Bot(intents=intents)
+
 
 @bot.event
 async def on_ready():
@@ -10,6 +16,7 @@ async def on_ready():
 
 
 guild = 755866816038961175
+
 
 
 help_words = ["help", "install", "stuck"]
@@ -22,10 +29,12 @@ async def on_message(ctx):
 
     for i in ctx.content.split(" "):
         if i in help_words:
-            await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if there is a solution for your problem. If not just ignore this message <3")
+            await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if you see a solution for your problem. If not just ignore this message <3")
 
 
-            
+
+
+
 find_config_e=discord.Embed(title="find your config (config-xpui.ini) file", description="very helpful for helper", color=0x0400ff)
 find_config_e.add_field(name="Solution 1:", value="run ```spicetify config-dir``` in a terminal of your choice (this opens your file explorer at the right location)", inline=False)
 find_config_e.add_field(name="Solution 2: ", value="run ```spicetify config``` in a terminal of your choice. What comes back is your config file", inline=False)
@@ -72,6 +81,10 @@ restart_e.add_field(name="Solution (both only win):", value="find your spotify s
 restart_e.add_field(name="if you have Spotify setup to run on startup:", value="navigate to this entry in regedit: ```HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run``` find the ```spotify``` key and edit its value to say ```spicetify auto``` aswell", inline=True)
 
 
+
+
+
+
 @bot.slash_command(guild_ids=[guild], name="find_config", description="Helps you and the helpers")
 async def find_config(ctx):
     await ctx.respond(embed=find_config_e)
@@ -95,6 +108,14 @@ async def blank_screen(ctx):
 @bot.slash_command(guild_ids=[guild], name="gone_after_restart", description="When you restart and your spotify is boring again")
 async def restart(ctx):
     await ctx.respond(embed=restart_e)
+
+@bot.slash_command(guild_ids=[guild], name="install", description="Hot to install spicetify")
+async def installS(ctx):
+    await ctx.respond("https://letmegooglethat.com/?q=Spicetify")
+
+
+
+
 
 
 bot.run("")
