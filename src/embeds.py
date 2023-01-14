@@ -34,20 +34,9 @@ install_embed = discord.Embed(
 )
 install_embed.add_field(
     name="Step 1:", 
-    value="Make sure you have Node.js and Git installed on your computer", 
+    value="Check out spicetify.app! It has a lot of useful information and instructions for installing Spicetify.",
     inline=False
 )
-install_embed.add_field(
-    name="Step 2: ", 
-    value="Run the command ```npm install -g spicetify-cli``` in your terminal", 
-    inline=False
-)
-install_embed.add_field(
-    name="Step 3: ", 
-    value="Run ```spicetify``` to configure and install Spicetify", 
-    inline=True
-)
-
 uninstall_embed = discord.Embed(
     title="Uninstall Spicetify", 
     description="Instructions for uninstalling Spicetify", 
