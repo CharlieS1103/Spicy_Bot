@@ -22,7 +22,7 @@ find_config_embed.add_field(
     value='''Search for it by yourself:
 Pathes:
 Windows: `C:/Users/YOUR_NAME/AppData/Roaming/spicetify`
-Linux: `~/.config/spicetify/config-xp    ui.ini`
+Linux: `~/.config/spicetify/config-xpui.ini`
 Mac: `~/.config/spicetify/config-xpui.ini`''', 
     inline=True
 )
