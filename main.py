@@ -1,36 +1,19 @@
 import discord
-from discord.ext import *
+from discord import app_commands
+
 
 intents = discord.Intents.default()
 intents.message_content = True
+client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)
+
+id="755866816038961175"
 
 
-
-bot = discord.Bot(intents=intents)
-
-
-@bot.event
+@client.event
 async def on_ready():
-    print('Online. Name: {0.user}'.format(bot))
-    await bot.change_presence(status=discord.Status.online)
-
-
-guild = 755866816038961175
-
-
-
-help_words = ["help", "install", "stuck"]
-
-@bot.event
-async def on_message(ctx):
-
-    if ctx.author == bot.user:
-        return
-
-    for i in ctx.content.split(" "):
-        if i in help_words:
-            await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if you see a solution for your problem. If not just ignore this message <3")
-
+    await tree.sync(guild=discord.Object(id=id))
+    print(f'We have logged in as {client.user}')
 
 
 
@@ -82,40 +65,49 @@ restart_e.add_field(name="if you have Spotify setup to run on startup:", value="
 
 
 
+@tree.command(name="find_config", description="Helps the helpers that they can help you. Or sth like this...", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=find_config_e)
 
+@tree.command(name="uninstall", description="D:", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=uninstall_e)
 
+@tree.command(name="path_error", description="How 2 fix the prefs path not found error", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=path)
 
-@bot.slash_command(guild_ids=[guild], name="find_config", description="Helps you and the helpers")
-async def find_config(ctx):
-    await ctx.respond(embed=find_config_e)
+@tree.command(name="keyword_not_found", description="Helps you to find it", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=keyword)
 
-@bot.slash_command(guild_ids=[guild], name="uninstall", description="Helps you to uninstall this really cool spicetify")
-async def uninstall(ctx):
-    await ctx.respond(embed=uninstall_e)
+@tree.command(name="blank_screen", description="Helps you to see everything again", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=update)
 
-@bot.slash_command(guild_ids=[guild], name="path_error", description="How 2 fix the prefs path not found error")
-async def pathError(ctx):
-    await ctx.respond(embed=path)
+@tree.command(name="gone_after_restart", description="When you restart and your spotify is boring again", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message(embed=restart_e)
 
-@bot.slash_command(guild_ids=[guild], name="keyword_not_found", description="Helps you to find it")
-async def keywordNotFound(ctx):
-    await ctx.respond(embed=keyword)
-
-@bot.slash_command(guild_ids=[guild], name="blank_screen", description="Helps you to see everything again")
-async def blank_screen(ctx):
-    await ctx.respond(embed=update)
-
-@bot.slash_command(guild_ids=[guild], name="gone_after_restart", description="When you restart and your spotify is boring again")
-async def restart(ctx):
-    await ctx.respond(embed=restart_e)
-
-@bot.slash_command(guild_ids=[guild], name="install", description="Hot to install spicetify")
-async def installS(ctx):
-    await ctx.respond("https://letmegooglethat.com/?q=Spicetify")
-
+@tree.command(name="install", description=":D", guild=discord.Object(id=id))
+async def find_config(interaction):
+    await interaction.response.send_message("https://letmegooglethat.com/?q=Spicetify")
 
 
 
 
+help_words = ["help", "install", "stuck"]
 
-bot.run("")
+
+@client.event
+async def on_message(ctx):
+
+
+    for i in ctx.content.split(" "):
+       if i in help_words:       
+            await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if you see a solution for your problem. If not just ignore this message <3")
+
+
+
+
+client.run("")
