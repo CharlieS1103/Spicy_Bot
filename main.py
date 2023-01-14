@@ -2,6 +2,8 @@ import discord
 from discord import app_commands
 
 
+
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
@@ -15,7 +17,7 @@ async def on_ready():
     await tree.sync(guild=discord.Object(id=id))
     print(f'We have logged in as {client.user}')
 
-
+count = 1
 
 
 find_config_e=discord.Embed(title="find your config (config-xpui.ini) file", description="very helpful for helper", color=0x0400ff)
@@ -26,8 +28,6 @@ Pathes:
 Windows: `C:/Users/YOUR NAME/AppData/Roaming/spicetify`
 Linux: `~/.config/spicetify/config-xpui.ini`
 mac: `~/.config/spicetify/config-xpui.ini`''', inline=True)
-
-
 uninstall_e=discord.Embed(title="Uninstall spicetify", description="D:", color=0x4400ff)
 uninstall_e.add_field(name="How 2:", value='''
 **First Step (all platforms):**
@@ -106,6 +106,19 @@ async def on_message(ctx):
     for i in ctx.content.split(" "):
        if i in help_words:       
             await ctx.reply("Do you need help? Open a ticket in #support-tickets, or type in / and look if you see a solution for your problem. If not just ignore this message <3")
+
+
+
+
+@tree.command(name="count", description="if somebody asks in off-topic for help :D", guild=discord.Object(id=id))
+async def count_lol(ctx):
+
+    helper = discord.utils.get(ctx.guild.roles, id=821412939315413052)
+
+    if helper in ctx.user.roles:
+        global count
+        count += 1
+        await ctx.response.send_message(f"counter set to {count}")
 
 
 
