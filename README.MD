@@ -1,0 +1,2 @@
+## Spicy discord bot
+Placeholder
